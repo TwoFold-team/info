@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TwoFold | تيم TwoFold</title>
+  <style>
+    :root {
+      --bg: #070b12;
+      --card: #101826;
+      --line: rgba(126,232,255,.18);
+      --cyan: #2ee6ff;
+      --text: #f4fbff;
+      --muted: #9bb3c4;
+      --wa: #25d366;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Cairo", "Noto Sans Arabic", system-ui, sans-serif;
+      background:
+        radial-gradient(900px 500px at 80% -10%, rgba(46,230,255,.16), transparent 50%),
+        radial-gradient(700px 400px at 0% 100%, rgba(255,166,61,.08), transparent 45%),
+        var(--bg);
+      color: var(--text);
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 80px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .logo { font-weight: 800; letter-spacing: .08em; color: var(--cyan); }
+    .nav a { color: var(--muted); text-decoration: none; margin-inline-start: 18px; }
+    .hero { padding: 72px 0 40px; }
+    .kicker { color: var(--cyan); font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: clamp(32px, 6vw, 64px); line-height: 1.25; margin: 0 0 16px; }
+    .lead { color: var(--muted); font-size: 18px; max-width: 640px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .btn {
+      border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 800;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-main { background: var(--cyan); color: #041018; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 36px; }
+    .card {
+      background: linear-gradient(180deg, rgba(16,24,38,.92), rgba(16,24,38,.7));
+      border: 1px solid var(--line); border-radius: 18px; padding: 20px;
+    }
+    .card h3 { margin: 0 0 8px; }
+    .card p { margin: 0; color: var(--muted); }
+    section { margin-top: 56px; }
+    footer { margin-top: 72px; color: var(--muted); font-size: 14px; }
+
+    .contact-box {
+      background: linear-gradient(180deg, rgba(16,24,38,.95), rgba(12,18,28,.88));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px 18px 22px;
+    }
+    .contact-split {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      align-items: stretch;
+      gap: 0;
+      min-height: 220px;
+    }
+    .contact-pane {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 18px 22px;
+    }
+    .divider {
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(46,230,255,.55), transparent);
+      margin: 8px 0;
+    }
+    .person-name {
+      margin: 0 0 6px;
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: .02em;
+      background: linear-gradient(90deg, #e8fbff, #2ee6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .person-role {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .wa-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--wa);
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(37,211,102,.28);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .wa-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 30px rgba(37,211,102,.38); }
+    .wa-btn svg { width: 34px; height: 34px; fill: #fff; }
+    .phone {
+      margin-top: 12px;
+      color: #d7e8f2;
+      font-weight: 700;
+      letter-spacing: .04em;
+      direction: ltr;
+    }
+    .mail-row {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .mail-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      color: #041018;
+      background: radial-gradient(circle at 30% 30%, #7ef0ff, #2ee6ff 55%, #14b8d4);
+      box-shadow: 0 10px 24px rgba(46,230,255,.25);
+      transition: transform .2s ease;
+    }
+    .mail-btn:hover { transform: translateY(-3px) scale(1.04); }
+    .at {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1;
+      font-family: "Cairo", sans-serif;
+    }
+    .mail-text { color: var(--muted); font-size: 15px; }
+    .mail-text b { color: var(--text); display: block; font-size: 16px; margin-top: 2px; }
+    @media (max-width: 720px) {
+      .contact-split { grid-template-columns: 1fr; }
+      .divider { width: 70%; height: 1px; margin: 8px auto; background: linear-gradient(90deg, transparent, rgba(46,230,255,.55), transparent); }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">TWOFOLD</div>
+      <nav class="nav">
+        <a href="#services">خدماتنا</a>
+        <a href="#work">الشغل</a>
+        <a href="#contact">تواصل</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <p class="kicker">تيم TwoFold للتطوير</p>
+      <h1>بنحوّل الفكرة لموقع، منصة، أو أبلكيشن شغال.</h1>
+      <p class="lead">مش بنسلّم شكل وبس. بنبني منتج يتستخدم: من الفهم، للتصميم، للكود، للرفع والمتابعة بعد التسليم.</p>
+      <div class="cta">
+        <a class="btn btn-main" href="#contact">كلم التيم</a>
+        <a class="btn btn-ghost" href="#work">شوف نوع الشغل</a>
+      </div>
+    </div>
+
+    <section id="services">
+      <h2>بنعمل إيه</h2>
+      <div class="grid">
+        <article class="card"><h3>مواقع شركات</h3><p>موقع يعرّف شغلك ويخلّي العميل يثق ويتواصل.</p></article>
+        <article class="card"><h3>منصات ويب</h3><p>أنظمة ولوحات تحكم حسب شغل الشركة.</p></article>
+        <article class="card"><h3>تطبيقات</h3><p>تطبيق للعملاء أو للفريق، بسيط وواضح.</p></article>
+        <article class="card"><h3>متاجر إلكترونية</h3><p>عرض منتجات، طلبات، ودفع حسب احتياجك.</p></article>
+        <article class="card"><h3>أنظمة إدارة</h3><p>متابعة الطلبات، المخزون، الحجوزات أو الفريق.</p></article>
+        <article class="card"><h3>هوية رقمية</h3><p>شكل المنصة والصفحة والمحتوى بنفس الروح.</p></article>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2>شكل الشغل</h2>
+      <p class="lead">النماذج دي بتوضّح نوع المنتجات اللي بنبنيها. لما تبعت سكرينات مشاريعكم الحقيقية هتتبدّل مكان النماذج.</p>
+      <div class="grid">
+        <article class="card"><h3>لوحة تحكم</h3><p>أرقام، رسوم، ومتابعة يومية.</p></article>
+        <article class="card"><h3>موقع شركة</h3><p>صفحة تعريف + خدمات + تواصل.</p></article>
+        <article class="card"><h3>متجر</h3><p>منتجات وطلب سريع من الموبايل.</p></article>
+        <article class="card"><h3>تطبيق حجوزات</h3><p>اختيار معاد وتأكيد في خطوات قليلة.</p></article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>تواصل</h2>
+      <p class="lead">اختار اللي هتكلمه. الأيقونة الخضرا بتفتح واتساب، وكلمة إيميل جنبها علامة @.</p>
+      <div class="contact-box">
+        <div class="contact-split">
+          <div class="contact-pane">
+            <h3 class="person-name">أحمد العربي</h3>
+            <p class="person-role">واتساب</p>
+            <a class="wa-btn" href="https://wa.me/201159010864" target="_blank" rel="noopener" aria-label="واتساب أحمد العربي">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.5 3.5A11 11 0 0 0 2.1 17.8L1 23l5.3-1.1A11 11 0 0 0 20.5 3.5zm-8.5 17a9.1 9.1 0 0 1-4.6-1.3l-.3-.2-3.2.7.7-3.1-.2-.3A9.1 9.1 0 1 1 12 20.5zm5-6.8c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.8 1-.3.2-.6.1a7.4 7.4 0 0 1-2.2-1.4 8.2 8.2 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.4-.5.1-.3a.5.5 0 0 0 0-.5c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-1 2.2 5.3 5.3 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4.1 15.7 15.7 0 0 0 1.6.6 3.8 3.8 0 0 0 1.8.1 2.9 2.9 0 0 0 1.9-1.3 2.4 2.4 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="contact-pane">
+            <h3 class="person-name">ياسين خالد</h3>
+            <p class="person-role">واتساب</p>
+            <a class="wa-btn" href="https://wa.me/201062944697" target="_blank" rel="noopener" aria-label="واتساب ياسين خالد">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.5 3.5A11 11 0 0 0 2.1 17.8L1 23l5.3-1.1A11 11 0 0 0 20.5 3.5zm-8.5 17a9.1 9.1 0 0 1-4.6-1.3l-.3-.2-3.2.7.7-3.1-.2-.3A9.1 9.1 0 1 1 12 20.5zm5-6.8c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.8 1-.3.2-.6.1a7.4 7.4 0 0 1-2.2-1.4 8.2 8.2 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.4-.5.1-.3a.5.5 0 0 0 0-.5c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-1 2.2 5.3 5.3 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4.1 15.7 15.7 0 0 0 1.6.6 3.8 3.8 0 0 0 1.8.1 2.9 2.9 0 0 0 1.9-1.3 2.4 2.4 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="mail-row">
+          <div class="mail-text">إيميل</div>
+          <a class="mail-btn" href="mailto:ahmedelarby77a@icloud.com" aria-label="إرسال إيميل">
+            <span class="at">@</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 TwoFold — تيم تطوير</footer>
+  </div>
+</body>
+</html>
